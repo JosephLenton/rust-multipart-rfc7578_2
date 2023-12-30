@@ -1,8 +1,31 @@
-[workspace]
-resolver = "2"
+[package]
+name = "rust-multipart-rfc7578_2"
+description = "An implementation of multipart/form-data (RFC7578)"
+authors = ["Joseph Lenton <josephlenton@gmail.com>", "Ferris Tseng <ferristseng@fastmail.fm>"]
+documentation = "https://docs.rs/rust-multipart-rfc7578_2/0.6.1/rust_multipart_rfc7578_2/"
+repository = "https://github.com/JosephLenton/rust-multipart-rfc7578_2"
+keywords = ["multipart", "form", "http"]
+categories = ["asynchronous", "web-programming"]
+version = "0.6.0"
+readme = "../README.md"
+license = "MIT OR Apache-2.0"
+edition = "2021"
 
-members = [
-  "actix",
-  "common",
-  "hyper"
-]
+[badges]
+github = { repository = "JosephLenton/rust-multipart-rfc7578", workflow = "Rust" }
+maintenance = { status = "passively-maintained" }
+
+[dependencies]
+bytes = "1.1"
+futures-core = "0.3"
+futures-util = { version = "0.3", default-features = false, features = ["io"] }
+http = "0.2"
+mime = "0.3"
+mime_guess = "2.0"
+rand = { version = "0.9", features = ["small_rng"] }
+thiserror = "2.0"
+
+[dev-dependencies]
+futures-util = { version = "0.3", default-features = false, features = ["std"] }
+hyper = "0.14"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }

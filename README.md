@@ -5,12 +5,6 @@
 
 ### Components
 
-| Name   | Documentation                                  | Crate                                             |
-| ------ | -----------------------------------------------| ------------------------------------------------- |
-| common | [![Docs][common docs badge]][common docs link] | [![Crate][common crate badge]][common crate link] |
-| actix  | [![Docs][actix docs badge]][actix docs link]   | [![Crate][actix crate badge]][actix crate link]   |
-| hyper  | [![Docs][hyper docs badge]][hyper docs link]   | [![Crate][hyper crate badge]][hyper crate link]   |
-
 This crate contains an implementation of the multipart/form-data media
 type described in [RFC 7578](https://tools.ietf.org/html/rfc7578).
 

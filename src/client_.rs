@@ -422,6 +422,22 @@ impl<'a> Form<'a> {
             Some(filename.into()),
         ));
     }
+    
+    pub fn add_reader_2<F, G, R>(&mut self, name: F, read: R, filename: Option<String>, mime: Option<Mime>)
+    where
+        F: Display,
+        G: Into<String>,
+        R: 'a + Read + Send + Sync + Unpin,
+    {
+        let read = Box::new(read);
+
+        self.parts.push(Part::new::<_, String>(
+            Inner::Read(read, None),
+            name,
+            mime,
+            filename,
+        ));
+    }
 
     /// Adds a readable part to the Form as a file with a specified mime.
     ///
