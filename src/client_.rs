@@ -422,11 +422,10 @@ impl<'a> Form<'a> {
             Some(filename.into()),
         ));
     }
-    
-    pub fn add_reader_2<F, G, R>(&mut self, name: F, read: R, filename: Option<String>, mime: Option<Mime>)
+
+    pub fn add_reader_2<F, R>(&mut self, name: F, read: R, filename: Option<String>, mime: Option<Mime>)
     where
         F: Display,
-        G: Into<String>,
         R: 'a + Read + Send + Sync + Unpin,
     {
         let read = Box::new(read);
