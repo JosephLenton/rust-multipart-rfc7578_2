@@ -186,7 +186,7 @@ impl<'a> Form<'a> {
     /// # Examples
     ///
     /// ```
-    /// # use common_multipart_rfc7578::client::multipart::{
+    /// # use rust_multipart_rfc7578_2::client::multipart::{
     /// #     self,
     /// #     BoundaryGenerator
     /// # };
@@ -217,7 +217,7 @@ impl<'a> Form<'a> {
     /// # Examples
     ///
     /// ```
-    /// use common_multipart_rfc7578::client::multipart;
+    /// use rust_multipart_rfc7578_2::client::multipart;
     ///
     /// let mut form = multipart::Form::default();
     ///
@@ -242,7 +242,7 @@ impl<'a> Form<'a> {
     /// # Examples
     ///
     /// ```
-    /// use common_multipart_rfc7578::client::multipart;
+    /// use rust_multipart_rfc7578_2::client::multipart;
     /// use std::io::Cursor;
     ///
     /// let bytes = Cursor::new("Hello World!");
@@ -266,7 +266,7 @@ impl<'a> Form<'a> {
     /// # Examples
     ///
     /// ```
-    /// use common_multipart_rfc7578::client::multipart;
+    /// use rust_multipart_rfc7578_2::client::multipart;
     /// use futures_util::io::Cursor;
     ///
     /// let bytes = Cursor::new("Hello World!");
@@ -294,11 +294,11 @@ impl<'a> Form<'a> {
     /// # Examples
     ///
     /// ```
-    /// use common_multipart_rfc7578::client::multipart;
+    /// use rust_multipart_rfc7578_2::client::multipart;
     ///
     /// let mut form = multipart::Form::default();
     ///
-    /// form.add_file("file", format!("../{}", file!()))
+    /// form.add_file("file", format!("./{}", file!()))
     ///     .expect("file to exist");
     /// ```
     pub fn add_file<P, F>(&mut self, name: F, path: P) -> io::Result<()>
@@ -316,7 +316,7 @@ impl<'a> Form<'a> {
     /// # Examples
     ///
     /// ```
-    /// use common_multipart_rfc7578::client::multipart;
+    /// use rust_multipart_rfc7578_2::client::multipart;
     ///
     /// let mut form = multipart::Form::default();
     ///
@@ -370,7 +370,7 @@ impl<'a> Form<'a> {
     /// # Examples
     ///
     /// ```
-    /// use common_multipart_rfc7578::client::multipart;
+    /// use rust_multipart_rfc7578_2::client::multipart;
     /// use std::io::Cursor;
     ///
     /// let bytes = Cursor::new("Hello World!");
@@ -399,7 +399,7 @@ impl<'a> Form<'a> {
     /// # Examples
     ///
     /// ```
-    /// use common_multipart_rfc7578::client::multipart;
+    /// use rust_multipart_rfc7578_2::client::multipart;
     /// use futures_util::io::Cursor;
     ///
     /// let bytes = Cursor::new("Hello World!");
@@ -423,15 +423,20 @@ impl<'a> Form<'a> {
         ));
     }
 
-    pub fn add_reader_2<F, R>(&mut self, name: F, read: R, filename: Option<String>, mime: Option<Mime>)
-    where
+    pub fn add_reader_2<F, R>(
+        &mut self,
+        name: F,
+        read: R,
+        filename: Option<String>,
+        mime: Option<Mime>,
+    ) where
         F: Display,
         R: 'a + Read + Send + Sync + Unpin,
     {
         let read = Box::new(read);
 
         self.parts.push(Part::new::<_, String>(
-            Inner::Read(read, None),
+            Inner::Read(read),
             name,
             mime,
             filename,
@@ -443,7 +448,7 @@ impl<'a> Form<'a> {
     /// # Examples
     ///
     /// ```
-    /// use common_multipart_rfc7578::client::multipart;
+    /// use rust_multipart_rfc7578_2::client::multipart;
     /// use std::io::Cursor;
     ///
     /// let bytes = Cursor::new("Hello World!");
@@ -472,7 +477,7 @@ impl<'a> Form<'a> {
     /// # Examples
     ///
     /// ```
-    /// use common_multipart_rfc7578::client::multipart;
+    /// use rust_multipart_rfc7578_2::client::multipart;
     /// use futures_util::io::Cursor;
     ///
     /// let bytes = Cursor::new("Hello World!");
@@ -508,7 +513,7 @@ impl<'a> Form<'a> {
     ///
     /// ```
     /// use hyper::{Method, Request};
-    /// use hyper_multipart_rfc7578::client::multipart;
+    /// use rust_multipart_rfc7578_2::client::multipart;
     ///
     /// let mut req_builder = Request::post("http://localhost:80/upload");
     /// let mut form = multipart::Form::default();
@@ -533,7 +538,7 @@ impl<'a> Form<'a> {
     /// ```
     /// use http_body_util::BodyDataStream;
     /// use hyper::{Method, Request};
-    /// use hyper_multipart_rfc7578::client::multipart;
+    /// use rust_multipart_rfc7578_2::client::multipart;
     ///
     /// let mut req_builder = Request::post("http://localhost:80/upload");
     /// let mut form = multipart::Form::default();

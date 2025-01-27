@@ -18,7 +18,7 @@ use rand::{rngs::SmallRng, Rng, SeedableRng};
 /// # Examples
 ///
 /// ```
-/// use common_multipart_rfc7578::client::multipart::BoundaryGenerator;
+/// use rust_multipart_rfc7578_2::client::multipart::BoundaryGenerator;
 ///
 /// struct TestGenerator;
 ///
@@ -37,16 +37,16 @@ pub(crate) struct RandomAsciiGenerator;
 
 impl BoundaryGenerator for RandomAsciiGenerator {
     fn generate_boundary() -> String {
-        let mut rng = SmallRng::from_entropy();
+        let mut rng = SmallRng::from_os_rng();
 
-        let a = rng.gen::<u64>();
-        let b = rng.gen::<u64>();
-        let c = rng.gen::<u64>();
-        let d = rng.gen::<u64>();
-        let e = rng.gen::<u64>();
-        let f = rng.gen::<u64>();
-        let g = rng.gen::<u64>();
-        let h = rng.gen::<u64>();
+        let a = rng.random::<u64>();
+        let b = rng.random::<u64>();
+        let c = rng.random::<u64>();
+        let d = rng.random::<u64>();
+        let e = rng.random::<u64>();
+        let f = rng.random::<u64>();
+        let g = rng.random::<u64>();
+        let h = rng.random::<u64>();
 
         format!(
             "{:016x}-{:016x}-{:016x}-{:016x}-{:016x}-{:016x}-{:016x}-{:016x}",

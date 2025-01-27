@@ -36,7 +36,7 @@ hyper-multipart-rfc7578 = "0.8"
 and import:
 
 ```rust
-extern crate hyper_multipart_rfc7578 as multipart;
+extern crate rust_multipart_rfc7578_2 as multipart;
 ```
 
 
